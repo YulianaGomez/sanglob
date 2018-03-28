@@ -26,6 +26,8 @@ Files
 |--globus_sandbox.py        Uses globus with streaming enabled
 |--setup_client             Sets up environment to change client ID and setting
                             conda environment
+|--commands_cham            List of commands specific for chameleon environment
+
 
 ----------------------
 Transfers with globus sandbox
