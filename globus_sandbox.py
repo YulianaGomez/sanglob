@@ -20,22 +20,16 @@ from globus_sdk.exc import GlobusAPIError
 
 CLIENT_ID = os.environ['CLIENT_ID']
 #CLIENT_ID = 'e8f1e999-c62a-4d67-b83e-5a1f396ef2ff' #new_app
-#CLIENT_ID = '59a91e4c-6717-4301-8d93-f02ff19ffdf0'
-#CLIENT_ID = '6db5a4e3-4e3f-452d-ab99-214f7d3c1140'
 TOKEN_FILE = 'refresh-tokens.json'
 REDIRECT_URI = 'https://auth.sandbox.globuscs.info/v2/web/auth-code'
 SCOPES = ('openid email profile '
           'urn:globus:auth:scope:transfer.api.globus.org:all')
-
-#change this endpoints
-#TUTORIAL_ENDPOINT_ID = 'ddb59aef-6d04-11e5-ba46-22000b92c6ec'
 
 
 get_input = getattr(__builtins__, 'raw_input', input)
 
 # uncomment the next line to enable debug logging for network requests
 # enable_requests_logging()
-
 
 def load_tokens_from_file(filepath):
     """Load a set of saved tokens."""
@@ -121,18 +115,8 @@ def transfer(sp,destination_endpoint_id,one_endpoint):
     #transfer = TransferClient(authorizer=authorizer,environment='sandbox')
     tc = TransferClient(authorizer=authorizer, environment="sandbox")
 
-    """# print out a directory listing from an endpoint
-    try:
-        transfer.endpoint_autoactivate(TUTORIAL_ENDPOINT_ID)
-    except GlobusAPIError as ex:
-        print(ex)
-        if ex.http_status == 401:
-            sys.exit('Refresh token has expired. '
-                     'Please delete refresh-tokens.json and try again.')
-        else:
-            raise ex"""
+    ##################---ENDPOINTS---###########################
 
-      ####COPIED####
     source_endpoint_id = '5a2e5704-b028-11e7-bdad-22000bdb2406' #sb vmtb4
     #source_endpoint_id = '55705028-aa15-11e7-bdad-22000bdb2406' #sb yulie7t
     #source_endpoint_id = 'b0b16296-88e7-11e7-a971-22000a92523b' #bare chameleon
@@ -140,8 +124,9 @@ def transfer(sp,destination_endpoint_id,one_endpoint):
     #source_endpoint_id = '8b26cc0e-877b-11e7-a949-22000a92523b'#ubuntu-vm
     #source_endpoint_id = 'ad19b012-77cf-11e7-8b98-22000b9923ef'#chameleon
     # source_endpoint_id = raw_input('Input source endpoint UUID: ')
+    
     #destination path
-    ##############SOURCE PATH######################
+    ##############---SOURCE PATH---######################
     #source_path = '/home/parallels/stream_transfer/test_files/'
     #source_path = '/home/parallels/stream_transfer/zero_globus/test_files/'
     source_path = sp
@@ -178,6 +163,10 @@ def transfer(sp,destination_endpoint_id,one_endpoint):
 
     submit_result = tc.submit_transfer(tdata)
     print("Task ID:", submit_result["task_id"])
+    """
+    Checking for time completion using globus calls
+    
+    """
     #print("Completion time:", submit_result["completion_time"])
 
     #setup of the transfer, submits as a https post request
@@ -214,7 +203,7 @@ def transfer(sp,destination_endpoint_id,one_endpoint):
     #        data = tc.task_list(filter="type:TRANSFER,DELETE/request_time:%s,%s"
     #        % (start_time, end_time), limit=5)
 
-        print("File transfer SUCCEEDED, will delete file from local directory now")
+        #print("File transfer SUCCEEDED, will delete file from local directory now")
         """ r = tc.task_list(num_results=1, filter="type:TRANSFER,DELETE")
         all_data = []
         for d in r.data:
