@@ -1,0 +1,3 @@
+export CLIENT_ID='e8f1e999-c62a-4d67-b83e-5a1f396ef2ff'
+export PATH=/home/cc/miniconda3/bin:$PATH
+
