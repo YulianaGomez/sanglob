@@ -1,0 +1,43 @@
+Author: Yuliana Zamora
+Last worked on: March 28, 2018
+Started: March 28, 2018
+
+
+----------------------
+About
+----------------------
+Testing different streaming capabilities of globus web services, GUC, and ZMQ.
+Developing an app where any one of the three can be called to initiate a
+transfer.
+
+----------------------
+Required to run:
+----------------------
+Globus*: https://www.globus.org/
+ZMQ: http://zeromq.org/area:download
+
+*Certain adjustments can be made to simulate streaming with
+globus if sandbox isn't public yet. Otherwise, download Globus Sandbox
+if available.
+
+----------------------
+Files
+----------------------
+|--globus_sandbox.py        Uses globus with streaming enabled
+|--setup_client             Sets up environment to change client ID and setting
+                            conda environment
+
+----------------------
+Transfers with globus sandbox
+----------------------
+Make sure you put your client id in setup_client file. Client id can be found in
+https://developers.globus.org/
+You will need to have globus connected at both the endpoints(source/destination)
+you want to transfer from/to.
+
+Sample command:  python globus_sandbox.py 55705028-aa15-11e7-bdad-22000bdb2406
+
+The second argument is the destination endpoint. The source endpoint is set under
+the variable source_endpoint_id in globus_sandbox.py. Files in specified directory
+are transferred, script waits a specified time for more files to enter directory,
+until a max time is reached or run is stopped.
